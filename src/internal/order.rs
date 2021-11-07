@@ -56,9 +56,17 @@ impl Order {
     fn is_buy(&self) -> bool {
         self.side.eq(&Side::Buy)
     }
-
     fn is_sell(&self) -> bool {
         self.side.eq(&Side::Sell)
+    }
+    pub fn is_new(&self) -> bool {
+        self.type_op.eq(&Operation::Create)
+    }
+    pub fn is_delete(&self) -> bool {
+        self.type_op.eq(&Operation::Delete)
+    }
+    pub fn same_operation(&self, order: &Order) -> bool {
+        self.type_op.eq(&order.type_op)
     }
 
     pub fn from_file(file_name: &str) -> Vec<Order> {

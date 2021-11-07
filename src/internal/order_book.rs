@@ -26,6 +26,13 @@ impl OrderBook {
             .map(|index| self.0.remove(index))
     }
 
+    pub fn cancel(&mut self, order: &Order) -> Option<Order> {
+        self.0
+            .iter()
+            .position(|item| item.eq(order) && !item.same_operation(order))
+            .map(|index| self.0.remove(index))
+    }
+
     pub fn flush(&self) {
         serde_json::to_writer(
             File::create("orderbook.json").expect("Failed to open file order_book"),

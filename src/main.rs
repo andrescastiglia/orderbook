@@ -8,12 +8,22 @@ fn main() {
 
     let orders = Order::from_file("orders.json");
 
-    orders
-        .into_iter()
-        .for_each(|new_order| match order_book.take(&new_order) {
-            Some(found) => trades.add(new_order, found),
-            None => order_book.add(new_order),
-        });
+    for new_order in orders {
+        if new_order.is_new() {
+            if order_book.cancel(&new_order).is_none() {
+                match order_book.take(&new_order) {
+                    Some(found) => trades.add(new_order, found),
+                    None => order_book.add(new_order),
+                }
+            }
+        } else if new_order.is_delete() {
+            if order_book.cancel(&new_order).is_none() {
+                order_book.add(new_order);
+            }
+        } else {
+            panic!("Operation type is invalid");
+        }
+    }
 
     order_book.flush();
     trades.flush();
