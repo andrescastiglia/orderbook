@@ -4,15 +4,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'dele'",
+            "name": "Debug executable 'order'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=dele",
-                    "--package=dele"
+                    "--bin=order",
+                    "--package=order"
                 ],
                 "filter": {
-                    "name": "dele",
+                    "name": "order",
                     "kind": "bin"
                 }
             },
@@ -22,16 +22,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'dele'",
+            "name": "Debug unit tests in executable 'order'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=dele",
-                    "--package=dele"
+                    "--bin=order",
+                    "--package=order"
                 ],
                 "filter": {
-                    "name": "dele",
+                    "name": "order",
                     "kind": "bin"
                 }
             },
