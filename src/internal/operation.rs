@@ -1,7 +1,7 @@
 use serde::Serialize;
 use std::str::FromStr;
 
-#[derive(Serialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Serialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Operation {
     #[serde(rename = "CREATE")]
     Create,

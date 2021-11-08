@@ -1,8 +1,16 @@
-use std::fs::File;
-
-use serde::Serialize;
-
 use super::order::Order;
+use serde::Serialize;
+use std::fs::File;
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum FileError {
+    #[error("Failed to write - {0}")]
+    FileError(#[from] std::io::Error),
+
+    #[error("Failed to deserialize - {0}")]
+    DeserializeError(#[from] serde_json::Error),
+}
 
 #[derive(Serialize)]
 pub struct OrderBook(Vec<Order>);
@@ -33,11 +41,10 @@ impl OrderBook {
             .map(|index| self.0.remove(index))
     }
 
-    pub fn flush(&self) {
-        serde_json::to_writer(
-            File::create("orderbook.json").expect("Failed to open file order_book"),
+    pub fn flush(&self) -> Result<(), FileError> {
+        Ok(serde_json::to_writer(
+            File::create("orderbook.json")?,
             &self.0,
-        )
-        .expect("Failed to flush order_book");
+        )?)
     }
 }

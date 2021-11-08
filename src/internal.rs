@@ -1,3 +1,4 @@
+pub(crate) mod console;
 pub(crate) mod operation;
 pub(crate) mod order;
 pub(crate) mod order_book;

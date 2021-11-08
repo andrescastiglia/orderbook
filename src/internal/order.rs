@@ -3,7 +3,20 @@ use serde::{
     de::{self, Deserializer},
     Deserialize, Serialize,
 };
-use std::{fmt::Display, fs::File, io::Read, str::FromStr};
+use std::{fmt::Display, fs::File, io::Read, str::FromStr, string::FromUtf8Error};
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum FileError {
+    #[error("Failed to read - {0}")]
+    FileError(#[from] std::io::Error),
+
+    #[error("Failed to convert bytes - {0}")]
+    ConvertBytesError(#[from] FromUtf8Error),
+
+    #[error("Failed to deserialize - {0}")]
+    Deserialize(#[from] serde_json::error::Error),
+}
 
 fn from_str<'a, T, D>(deserializer: D) -> Result<T, D::Error>
 where
@@ -30,6 +43,12 @@ pub struct Order {
     limit_price: f64,
     #[serde(deserialize_with = "from_str")]
     side: Side,
+}
+
+impl Display for Order {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?} {:?} #{}", self.type_op, self.side, self.order_id)
+    }
 }
 
 impl Eq for Order {}
@@ -69,16 +88,10 @@ impl Order {
         self.type_op.eq(&order.type_op)
     }
 
-    pub fn from_file(file_name: &str) -> Vec<Order> {
-        let mut buffer = Vec::new();
-
-        File::open(file_name)
-            .expect("Failed to open file")
-            .read_to_end(&mut buffer)
-            .expect("Failed to read file");
-
-        serde_json::from_str(&String::from_utf8(buffer).expect("Failed to parse file"))
-            .expect("Failed to parse file")
+    pub fn from_file(file_name: &str) -> Result<Vec<Order>, FileError> {
+        let mut buffer = Vec::default();
+        File::open(file_name)?.read_to_end(&mut buffer)?;
+        Ok(serde_json::from_str(&String::from_utf8(buffer)?)?)
     }
 
     pub fn alcoyana(&self, order: &Order) -> bool {
