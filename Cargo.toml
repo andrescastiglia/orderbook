@@ -2,7 +2,7 @@
 name = "order"
 version = "0.1.0"
 edition = "2021"
-author = "Andres Castiglia"
+authors = ["Andres Castiglia <acastiglia@gmail.com>"]
 
 [dependencies]
 chrono = "~0.4"

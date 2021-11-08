@@ -21,4 +21,6 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Cargo clippy
-      run: cargo clippy -- -W clippy::pedantic 
+      run: cargo clippy -- -W clippy::pedantic --verbose
+    - name: Cargo doc
+      run: cargo doc --target-dir docs --no-deps --verbose

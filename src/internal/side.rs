@@ -1,6 +1,7 @@
 use serde::Serialize;
 use std::str::FromStr;
 
+/// Side of the order
 #[derive(Debug, Serialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Side {
     #[serde(rename = "SELL")]

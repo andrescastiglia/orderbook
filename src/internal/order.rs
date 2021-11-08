@@ -28,6 +28,7 @@ where
     T::from_str(&text).map_err(de::Error::custom)
 }
 
+/// Struct that represents a single order
 #[derive(Serialize, Deserialize)]
 pub struct Order {
     #[serde(deserialize_with = "from_str")]
@@ -88,12 +89,24 @@ impl Order {
         self.type_op.eq(&order.type_op)
     }
 
+    /// Load orders from a file
+    /// # Arguments
+    /// * `file_name` - The file name to load
+    /// # Returns
+    /// * `Vec<Order>` - The orders loaded from the file
+    /// # Errors
+    /// * `FileError` - If the file cannot be read
     pub fn from_file(file_name: &str) -> Result<Vec<Order>, FileError> {
         let mut buffer = Vec::default();
         File::open(file_name)?.read_to_end(&mut buffer)?;
         Ok(serde_json::from_str(&String::from_utf8(buffer)?)?)
     }
 
+    /// Match two orders, see also <https://www.youtube.com/watch?v=UMSuvFOExhk>
+    /// # Arguments
+    /// * `order` - Order to match
+    /// # Returns
+    /// * `bool` - The matched orders
     pub fn alcoyana(&self, order: &Order) -> bool {
         if self.is_buy() && order.is_sell() {
             self.amount.ge(&order.amount)

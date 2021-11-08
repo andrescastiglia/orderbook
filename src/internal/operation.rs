@@ -1,6 +1,7 @@
 use serde::Serialize;
 use std::str::FromStr;
 
+/// Used to determine the type of the operation.
 #[derive(Debug, Serialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Operation {
     #[serde(rename = "CREATE")]
