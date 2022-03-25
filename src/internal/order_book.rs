@@ -52,6 +52,8 @@ impl OrderBook {
     /// Write the order book to a file
     /// # Returns
     /// * `Result<(), FileError>` - The result of the write operation
+    /// # Errors
+    /// When something bad happen
     pub fn flush(&self) -> Result<(), FileError> {
         Ok(serde_json::to_writer(
             File::create("orderbook.json")?,

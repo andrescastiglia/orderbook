@@ -2,3 +2,4 @@ target
 Cargo.lock
 orderbook.json
 trades.json
+docs
