@@ -28,13 +28,8 @@ impl Trade {
     }
 }
 
+#[derive(Default)]
 pub struct Trades(Vec<Trade>);
-
-impl Default for Trades {
-    fn default() -> Self {
-        Trades(Vec::default())
-    }
-}
 
 impl Trades {
     /// Add a trade to the list of trades
