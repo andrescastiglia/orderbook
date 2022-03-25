@@ -23,6 +23,7 @@ impl Trade {
     /// * `seller` - Order opposite to previous
     /// # Returns
     /// A new trade
+    #[must_use] 
     pub fn new(order1: Order, order2: Order) -> Trade {
         Trade(order1, order2)
     }

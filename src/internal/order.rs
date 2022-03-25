@@ -79,12 +79,15 @@ impl Order {
     fn is_sell(&self) -> bool {
         self.side.eq(&Side::Sell)
     }
+    #[must_use] 
     pub fn is_new(&self) -> bool {
         self.type_op.eq(&Operation::Create)
     }
+    #[must_use] 
     pub fn is_delete(&self) -> bool {
         self.type_op.eq(&Operation::Delete)
     }
+    #[must_use] 
     pub fn same_operation(&self, order: &Order) -> bool {
         self.type_op.eq(&order.type_op)
     }
@@ -107,6 +110,7 @@ impl Order {
     /// * `order` - Order to match
     /// # Returns
     /// * `bool` - The matched orders
+    #[must_use] 
     pub fn alcoyana(&self, order: &Order) -> bool {
         if self.is_buy() && order.is_sell() {
             self.amount.ge(&order.amount)
