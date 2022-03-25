@@ -1,6 +1,4 @@
-mod internal;
-
-use internal::{console::Console, order::Order, order_book::OrderBook, trade::Trades};
+use order::internal::{console::Console, order::Order, order_book::OrderBook, trade::Trades};
 use log::{error, info, warn};
 
 static LOGGER: Console = Console;

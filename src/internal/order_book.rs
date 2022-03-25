@@ -13,14 +13,8 @@ pub enum FileError {
 }
 
 /// Collection of orders
-#[derive(Serialize)]
+#[derive(Default, Serialize)]
 pub struct OrderBook(Vec<Order>);
-
-impl Default for OrderBook {
-    fn default() -> Self {
-        OrderBook(Vec::default())
-    }
-}
 
 impl OrderBook {
     /// Add an order to the order book
