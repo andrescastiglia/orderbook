@@ -1,19 +1,17 @@
 name: Rust
-
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
 env:
   CARGO_TERM_COLOR: always
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Build
       run: cargo build --release --verbose
     - name: Archive 
@@ -30,5 +28,5 @@ jobs:
     - name: Archive
       uses: actions/upload-artifact@v3
       with:
-        name: doc
+        name: docs
         path: docs/doc
