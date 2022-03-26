@@ -33,7 +33,7 @@ impl OrderBook {
     pub fn take(&mut self, order: &Order) -> Option<Order> {
         self.0
             .iter()
-            .position(|item| item.alcoyana(order))
+            .position(|item| item.match_with(order))
             .map(|index| self.0.remove(index))
     }
 

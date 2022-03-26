@@ -111,7 +111,7 @@ impl Order {
     /// # Returns
     /// * `bool` - The matched orders
     #[must_use] 
-    pub fn alcoyana(&self, order: &Order) -> bool {
+    pub fn match_with(&self, order: &Order) -> bool {
         if self.is_buy() && order.is_sell() {
             self.amount.ge(&order.amount)
         } else if order.is_buy() && self.is_sell() {
@@ -127,7 +127,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn capri_capri() {
+    fn match_ok() {
         let order1 = Order {
             type_op: Operation::Create,
             account_id: 1,
@@ -148,11 +148,11 @@ mod tests {
             side: Side::Sell,
         };
 
-        assert!(order1.alcoyana(&order2));
+        assert!(order1.match_with(&order2));
     }
 
     #[test]
-    fn alcoyana_capri() {
+    fn not_match() {
         let order1 = Order {
             type_op: Operation::Create,
             account_id: 1,
@@ -173,6 +173,6 @@ mod tests {
             side: Side::Sell,
         };
 
-        assert!(!order1.alcoyana(&order2));
+        assert!(!order1.match_with(&order2));
     }
 }
