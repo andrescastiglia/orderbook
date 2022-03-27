@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["order"] = [{"text":"impl <a class=\"trait\" href=\"https://docs.rs/log/0.4.16/log/trait.Log.html\" title=\"trait log::Log\">Log</a> for <a class=\"struct\" href=\"order/internal/console/struct.Console.html\" title=\"struct order::internal::console::Console\">Console</a>","synthetic":false,"types":["order::internal::console::Console"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

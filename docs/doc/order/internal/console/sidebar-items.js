@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Console","The console is a singleton that is used to log messages to the console. It is used by the `log` macro."]]});

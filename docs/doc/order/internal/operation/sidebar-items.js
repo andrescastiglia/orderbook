@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Operation","Used to determine the type of the operation."]]});

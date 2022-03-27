@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["order"] = [{"text":"impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.136/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"order/internal/order/struct.Order.html\" title=\"struct order::internal::order::Order\">Order</a>","synthetic":false,"types":["order::internal::order::Order"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["FileError",""]],"struct":[["Trade","Trade is a struct that represents a trade in the market"],["Trades",""]]});
