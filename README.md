@@ -1,30 +1,30 @@
-# Trading engine. Evaluación técnica.
+# Trading engine. 
+
+Technical evaluation.
 
 ## Backend Rust
 
-### Introduccion
+### Introduction
 
-Un *trading engine* se encarga de procesar las órdenes que los usuarios van creando en un exchange. El trading-engine tiene un componente principal llamado orderbook. Un orderbook se encarga de almacenar las órdenes hasta que matchean o sean canceladas por el usuario
+A trading engine is responsible for processing the orders that users create in an exchange. The trading-engine has a main component called orderbook. An orderbook is responsible for storing the orders until they match or are canceled by the user
 
-Un orderbook almacena las órdenes en dos grandes grupos, órdenes de venta y órdenes de compra. La órdenes de venta se acceden siempre desde la más barata a la más cara y la ordenes de compra de la más cara a la más barata.
-La órdenes pueden ser de compra o de venta
-Cada vez que una orden nueva ingresa se evalúa contra el lado opuesto del orderbook si tiene posibilidad de hacer match
+An orderbook stores orders in two large groups, sell orders and buy orders. Sell orders are always accessed from cheapest to most expensive and buy orders from most expensive to cheapest. Orders can be buy or sell. Each time a new order enters it is evaluated against the opposite side of the orderbook if it has a chance to match
 
-### Aclaracion
-Una orden de compra matchea con todas las órdenes de venta con precio igual o menor. Una orden de venta matchea con todas las órdenes de compra con precio igual o mayor.
-Si hay match, se retira la orden que matcheo con la nueva orden del orderbook
-Si no hay match la orden debe ser almacenada en su lado correspondiente 
+### Clarification
 
-Cada match es llamado trade y normalmente se almacena la información de las órdenes involucradas en una estructura llamada trades.
+A buy order matches all sell orders with the same or lower price. A sell order matches all buy orders with the same or higher price. If there is a match, the order that matched the new order from the orderbook is removed. If there is no match, the order must be stored in its corresponding side
 
-### Requerimientos
+Each match is called a trade and normally the information of the orders involved is stored in a structure called trades.
 
-- Implementar en Rust un trading engine
-- El algoritmo tiene que procesar las órdenes desde el archivo `orders.json`, que se adjunto en el mail
-- Como resultado de la ejecución el algoritmo de matching tiene que generar 2 archivos, uno llamado `orderbook.json` y otro `trades.json`
-- Tiene que haber por lo menos un test que evalúe un trade simple
-- Se valora cualquier plus que puedas ofrecer y que ponga de manifiesto tus conocimientos y habilidades técnicas.
-- La solución se tiene que compartir a través de _Github_ o ~Bitbucket~.
+### Requirements
 
-### Información adicional
+Implement a trading engine in Rust
+The algorithm has to process the orders from the file orders.json, which is attached in the mail
+As a result of the execution, the matching algorithm has to generate 2 files, one called orderbook.json and another trades.json
+There must be at least one test that evaluates a simple trade
+Any extra that you can offer and that shows your knowledge and technical skills is valued.
+The solution has to be shared via Github.
+
+
+### See also
 https://www.investopedia.com/terms/o/order-book.asp
